@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 //Colors
 class AppColors {
   static const appDark = Color(0xff292D32);
@@ -13,3 +14,6 @@ const String certificateIcon='assets/images/certificate-icon.svg';
 const String approvedIcon='assets/images/approved-icon.svg';
 //fonts
 const String clashDisplay='ClashDisplay';
+//supabase
+// It's handy to then extract the Supabase client in a variable for later uses
+final supabase = Supabase.instance.client;

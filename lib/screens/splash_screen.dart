@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:visibly/screens/home_screen.dart';
+import 'package:visibly/screens/login_screen.dart';
 import 'package:visibly/utils/common_functions.dart';
 import 'package:visibly/utils/constants.dart';
 import 'package:visibly/utils/navigation_utils.dart';
@@ -45,7 +45,7 @@ class SplashScreen extends StatelessWidget {
                  SizedBox(height: screenHeight(context) * 0.12,),
 GestureDetector(
   onTap: (){
-    openScreen(context,const HomeScreen());
+    openReplaceScreen(context,const LoginScreen());
   },
   child:const CommonButton(),
 )
