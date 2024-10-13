@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 //screen size
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+//show toast
+void showToast(String message) {
+  Fluttertoast.showToast(
+      msg: message, // message
+      toastLength: Toast.LENGTH_SHORT, // length
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.grey // location
+      // timeInSecForIos: 1               // duration
+      );
+}
 //validations
 String? validatePassword(String? val) {
   if (val == null || val.isEmpty) {

@@ -39,8 +39,11 @@ dependencies:
   google_fonts: 6.1.0
   flutter_staggered_animations:
   supabase_flutter:
+  firebase_auth:
   flutter_dotenv:
   flutter_secure_storage:
+  fluttertoast:
+  firebase_core:
 
 dev_dependencies:
   flutter_test:

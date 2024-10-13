@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:visibly/services/auth_service.dart';
 import '../utils/common_functions.dart';
 import '../utils/constants.dart';
 import '../widgets/common_button.dart';
@@ -15,7 +16,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  
+  bool _isLoading=false;
   final _formKey = GlobalKey<FormState>();
 
 
@@ -62,13 +63,22 @@ class _SignupScreenState extends State<SignupScreen> {
                     SizedBox(
                     height: screenHeight(context) * .06,
                   ),
-                  GestureDetector(
+                _isLoading? const CommonButton(label: 'Loading...',
+                    
+                                  ) :GestureDetector(
                         onTap: ()async{
               if (_formKey.currentState!.validate()) {
+                setState(() {
+                  _isLoading=true;
+                });
                         // If the form is valid, proceed with the action
                         log('Form is valid. Username: $_username, Password: $_password');
                         // You can proceed to sign the user in or perform another action
-                      final authResponse= await supabase.auth.signUp(password: _password!,email: _username);
+                       await AuthService.signUp(password: _password!,email: _username!,context: context).then((value){
+setState(() {
+                  _isLoading=false;
+                });
+                      });
                       } else {
                         // If the form is not valid, do nothing or show an error
                         log('Form is not valid');

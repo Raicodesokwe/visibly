@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../services/auth_service.dart';
 import '../utils/common_functions.dart';
 import '../utils/constants.dart';
 import '../widgets/common_button.dart';
@@ -16,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  
+  bool _isLoading=false;
   final _formKey = GlobalKey<FormState>();
 
 
@@ -58,17 +59,27 @@ class _LoginScreenState extends State<LoginScreen> {
                    CommonTextField(
                     validator: (val)=>validatePassword(val),
                     hintText: 'Password',obscureText: true,onChanged: (value){
-              
+               _password=value;
                  }),
                     SizedBox(
                     height: screenHeight(context) * .06,
                   ),
-                  GestureDetector(
-                        onTap: (){
+                  _isLoading? const CommonButton(label: 'Loading...',
+                    
+                                  ) :GestureDetector(
+                        onTap: ()async{
               if (_formKey.currentState!.validate()) {
+                setState(() {
+                  _isLoading=true;
+                });
                         // If the form is valid, proceed with the action
                         log('Form is valid. Username: $_username, Password: $_password');
                         // You can proceed to sign the user in or perform another action
+                         await AuthService.signIn(password: _password!,email: _username!,context: context).then((value){
+setState(() {
+                  _isLoading=false;
+                });
+                      });
                       } else {
                         // If the form is not valid, do nothing or show an error
                         log('Form is not valid');

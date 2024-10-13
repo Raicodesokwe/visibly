@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visibly/firebase_options.dart';
 import 'package:visibly/screens/splash_screen.dart';
 import 'package:visibly/utils/common_functions.dart';
 
@@ -14,6 +16,10 @@ void main() async{
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  //initialize firebase
+   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   // Initialize Supabase
   await initializeSupabase();
   runApp(const MyApp());

@@ -17,3 +17,10 @@ const String clashDisplay='ClashDisplay';
 //supabase
 // It's handy to then extract the Supabase client in a variable for later uses
 final supabase = Supabase.instance.client;
+//firebase auth error messages
+const String weakPassword='weak-password';
+const String emailAlreadyInUse='email-already-in-use';
+const String userNotFound='user-not-found';
+const String wrongPassword='wrong-password';
+//general error message
+const String somethingWentWrong='Something went wrong';
