@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:visibly/screens/home_screen.dart';
+import 'package:visibly/screens/login_screen.dart';
 import 'package:visibly/utils/common_functions.dart';
 import 'package:visibly/utils/constants.dart';
 import 'package:visibly/utils/navigation_utils.dart';
@@ -56,6 +57,23 @@ if(e.code==wrongPassword){
   message='User not found for that email';
 }
 showToast(message);
+}catch(e){
+  log(e.toString());
+showToast('$e');
+}
+  }
+static Future<void> signOut({
+required BuildContext context,
+  })async{
+ 
+try{
+  
+await FirebaseAuth.instance.signOut(
+  
+).then((value) {
+   Future.delayed(const Duration(seconds: 1));
+  openReplaceScreen(context,const LoginScreen());
+});
 }catch(e){
   log(e.toString());
 showToast('$e');

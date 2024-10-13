@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:visibly/screens/accreditations_screen.dart';
+import 'package:visibly/services/auth_service.dart';
 import 'package:visibly/utils/common_functions.dart';
 import 'package:visibly/utils/constants.dart';
 import 'package:visibly/utils/navigation_utils.dart';
@@ -60,12 +61,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: screenHeight(context) * 0.05,),
-                  Text('Hi there,',style: TextStyle(
-                    fontFamily: clashDisplay,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.appDark.withOpacity(0.87)
-                  ),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Hi there,',style: TextStyle(
+                        fontFamily: clashDisplay,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.appDark.withOpacity(0.87)
+                      ),),
+                     GestureDetector(
+                      onTap: (){
+                        AuthService.signOut( context: context);
+                      },
+                      child: const Icon(Icons.logout))
+                    ],
+                  ),
                   SizedBox(height: screenHeight(context) * 0.007,),
                 const  Text('Search through our database of accredited institutions',style: TextStyle(
                     color: AppColors.appDark

@@ -26,10 +26,19 @@ String? validatePassword(String? val) {
   }
   return null; // Return null if validation is successful
 }
-String? validateUserName(String? val) {
+String? validateEmail(String? val) {
     if (val == null || val.isEmpty) {
                         return 'Please enter your username or email';
                       }
+                       // Define a regular expression for validating an email
+  String emailPattern =
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+  RegExp regex = RegExp(emailPattern);
+
+  // Check if the input matches the email format
+  if (!regex.hasMatch(val)) {
+    return 'Please enter a valid email address';
+  }
                       return null; // Return null if validation is successful
 }
 //flutter secure storage

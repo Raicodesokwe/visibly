@@ -21,7 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
 
   // You can store form field values here
-  String? _username;
+  String? _email;
   String? _password;
   
   @override
@@ -50,8 +50,8 @@ class _SignupScreenState extends State<SignupScreen> {
              ),),
                    SizedBox(height: screenHeight(context) * 0.05,),
                   CommonTextField(hintText: 'Email',onChanged: (value){
-              _username = value;
-                 },validator: (val)=>validateUserName(val),),
+              _email = value;
+                 },validator: (val)=>validateEmail(val),),
                   SizedBox(
                     height: screenHeight(context) * .05,
                   ),
@@ -72,9 +72,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   _isLoading=true;
                 });
                         // If the form is valid, proceed with the action
-                        log('Form is valid. Username: $_username, Password: $_password');
+                        log('Form is valid. Email: $_email, Password: $_password');
                         // You can proceed to sign the user in or perform another action
-                       await AuthService.signUp(password: _password!,email: _username!,context: context).then((value){
+                       await AuthService.signUp(password: _password!,email: _email!,context: context).then((value){
 setState(() {
                   _isLoading=false;
                 });
