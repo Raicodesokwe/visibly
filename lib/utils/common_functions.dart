@@ -26,6 +26,14 @@ String? validatePassword(String? val) {
   }
   return null; // Return null if validation is successful
 }
+String? validateUserName(String? val) {
+  if (val == null || val.isEmpty) {
+    return 'Please enter your username';
+  } else if (val.length < 3) {
+    return 'Username must be at least 3 characters long';
+  }
+  return null; // Return null if validation is successful
+}
 String? validateEmail(String? val) {
     if (val == null || val.isEmpty) {
                         return 'Please enter your username or email';

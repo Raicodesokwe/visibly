@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visibly/firebase_options.dart';
-import 'package:visibly/screens/splash_screen.dart';
+import 'package:visibly/services/auth_service.dart';
 import 'package:visibly/utils/common_functions.dart';
 
 void main() async{
@@ -43,8 +43,10 @@ class MyApp extends StatelessWidget {
                 elevation: 0, backgroundColor: Colors.transparent),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: AuthService.checkAuth(),
     );
   }
+
+  
 }
 

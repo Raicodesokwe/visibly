@@ -1,8 +1,10 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:visibly/services/auth_service.dart';
+import 'package:visibly/widgets/user_image_picker.dart';
 import '../utils/common_functions.dart';
 import '../utils/constants.dart';
 import '../widgets/common_button.dart';
@@ -18,8 +20,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   bool _isLoading=false;
   final _formKey = GlobalKey<FormState>();
-
-
+  File? _selectedImage;
   // You can store form field values here
   String? _email;
   String? _password;
@@ -48,7 +49,9 @@ class _SignupScreenState extends State<SignupScreen> {
                  Shadow(color: AppColors.appGreen, blurRadius: 23),
               ]
              ),),
-                   SizedBox(height: screenHeight(context) * 0.05,),
+                   UserImagePicker(onPickImage: (pickedImage){
+_selectedImage=pickedImage;
+                  },),
                   CommonTextField(hintText: 'Email',onChanged: (value){
               _email = value;
                  },validator: (val)=>validateEmail(val),),
@@ -62,12 +65,23 @@ class _SignupScreenState extends State<SignupScreen> {
                  }),
                     SizedBox(
                     height: screenHeight(context) * .06,
+                  ), 
+                  CommonTextField(
+                    validator: (val)=>validateUserName(val),
+                    hintText: 'Username',obscureText: true,onChanged: (value){
+              _password=value;
+                 }),
+                    SizedBox(
+                    height: screenHeight(context) * .06,
                   ),
                 _isLoading? const CommonButton(label: 'Loading...',
                     
                                   ) :GestureDetector(
                         onTap: ()async{
-              if (_formKey.currentState!.validate()) {
+                          if(_selectedImage==null){
+                            showToast('Please pick an image');
+                          }
+             else if (_formKey.currentState!.validate()) {
                 setState(() {
                   _isLoading=true;
                 });

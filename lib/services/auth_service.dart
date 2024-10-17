@@ -8,6 +8,8 @@ import 'package:visibly/utils/common_functions.dart';
 import 'package:visibly/utils/constants.dart';
 import 'package:visibly/utils/navigation_utils.dart';
 
+import '../screens/splash_screen.dart';
+
 class AuthService{
   static Future<void> signUp({
 required String email,
@@ -78,5 +80,16 @@ await FirebaseAuth.instance.signOut(
   log(e.toString());
 showToast('$e');
 }
+  }
+static  StreamBuilder<User?> checkAuth() {
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context,snapshot) {
+        if(snapshot.connectionState==ConnectionState.waiting||!snapshot.hasData){
+         return const SplashScreen();
+        }
+        return const HomeScreen();
+      }
+    );
   }
 }
