@@ -21,8 +21,7 @@ try{
   
 await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).then((value) {
   showToast('User signed up successfully');
-  Future.delayed(const Duration(seconds: 1));
-  openReplaceScreen(context,const HomeScreen());
+ 
 } 
 
 );

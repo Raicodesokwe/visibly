@@ -17,6 +17,7 @@ const String clashDisplay='ClashDisplay';
 //supabase
 // It's handy to then extract the Supabase client in a variable for later uses
 final supabase = Supabase.instance.client;
+final supabaseStorage= supabase.storage.from('profiles');
 //firebase auth error messages
 const String weakPassword='weak-password';
 const String emailAlreadyInUse='email-already-in-use';
