@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:visibly/screens/accreditations_screen.dart';
+import 'package:visibly/screens/chat_screen.dart';
 import 'package:visibly/services/auth_service.dart';
 import 'package:visibly/utils/common_functions.dart';
 import 'package:visibly/utils/constants.dart';
@@ -52,6 +53,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.appDark,
+          onPressed: (){
+            openScreen(context,const ChatScreen());
+          },
+        child:const Icon(Icons.chat_rounded,color: AppColors.appGreen,),
+        ),
         body: FadeTransition(
             opacity: fadeAnimation,
           child: Padding(

@@ -118,10 +118,10 @@ _selectedImage=pickedImage;
 setState(() {
                   _isLoading=false;
                 });
-  //                   Future.delayed(const Duration(seconds: 1));
-  // if(mounted){
-  //   openReplaceScreen(context,const HomeScreen()); 
-  // }    
+                    Future.delayed(const Duration(seconds: 1));
+  if(mounted){
+    openReplaceScreen(context,const HomeScreen()); 
+  }    
 
                       } else {
                         // If the form is not valid, do nothing or show an error
