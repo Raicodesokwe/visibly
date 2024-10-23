@@ -45,6 +45,7 @@ dependencies:
   fluttertoast:
   firebase_core:
   image_picker:
+  http:
 
 dev_dependencies:
   flutter_test:

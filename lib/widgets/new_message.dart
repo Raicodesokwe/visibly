@@ -30,7 +30,7 @@ class _NewMessageState extends State<NewMessage> {
         .single(); // .single() to fetch one record only
 //send to supabase
 await supabase.from('chat').insert({
-                          'id':uid,
+                          'user_id':uid,
                           'username':profileData['username'],
                           'avatar_url':profileData['avatar_url'],
                           'message':enteredMessage

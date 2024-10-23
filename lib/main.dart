@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visibly/api/visibly_repo.dart';
 import 'package:visibly/firebase_options.dart';
 import 'package:visibly/services/auth_service.dart';
-import 'package:visibly/utils/common_functions.dart';
 
 void main() async{
     WidgetsFlutterBinding.ensureInitialized();
      await dotenv.load(fileName: ".env");
-       // Store the keys in secure storage
-  await storeKeys();
     await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -21,7 +19,8 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
 );
   // Initialize Supabase
-  await initializeSupabase();
+VisiblyRepoService.initializeSupabase();
+  // await initializeSupabase();
   runApp(const MyApp());
 }
 

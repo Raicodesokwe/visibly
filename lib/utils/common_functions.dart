@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 //screen size
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
@@ -49,26 +46,5 @@ String? validateEmail(String? val) {
   }
                       return null; // Return null if validation is successful
 }
-//flutter secure storage
-const FlutterSecureStorage secureStorage =  FlutterSecureStorage();
 
-Future<void> storeKeys() async {
-  // Storing the keys in secure storage
-  await secureStorage.write(key: 'supabaseUrl', value: dotenv.env['PROJECT_URL']!);
-  await secureStorage.write(key: 'apiKey', value: dotenv.env['API_KEY']!);
-}
 
-Future<void> initializeSupabase() async {
-  // Retrieving the keys from secure storage
-  String? supabaseUrl = await secureStorage.read(key: 'supabaseUrl');
-  String? apiKey = await secureStorage.read(key: 'apiKey');
-
-  if (supabaseUrl != null && apiKey != null) {
-    await Supabase.initialize(
-      url: supabaseUrl,
-      anonKey: apiKey,
-    );
-  } else {
-    throw Exception('Supabase keys not found in secure storage');
-  }
-}

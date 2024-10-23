@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 //Colors
 class AppColors {
@@ -25,3 +26,25 @@ const String userNotFound='user-not-found';
 const String wrongPassword='wrong-password';
 //general error message
 const String somethingWentWrong='Something went wrong';
+//initialize supabase
+String initializeSupabaseUrl=dotenv.env['INITIALIZE_SUPABASE']!;
+//Request headers
+Map<String, String> get headers {
+
+  return {
+    "Content-Type": "application/json",
+  };
+}
+
+//Errors
+const noInternet = 100;
+const apiError = 101;
+const unknownError = 103;
+const emptyFieldError = 104;
+const unauthorizedError = 401;
+
+//success and failure codes
+const successCode = 200;
+const successCreated = 201;
+const successCodes = [200, 201, 202, 204];
+const failureCodes = [400, 401, 402, 404, 500, 503];
