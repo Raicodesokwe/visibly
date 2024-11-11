@@ -1,10 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
-
+import 'package:chat_supabase/chat_supabase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:visibly/services/auth_service.dart';
 import 'package:visibly/widgets/user_image_picker.dart';
 import '../utils/common_functions.dart';
@@ -98,22 +97,7 @@ _selectedImage=pickedImage;
                         // You can proceed to sign the user in or perform another action
                        await AuthService.signUp(password: _password!,email: _email!,context: context);
                            final uid=FirebaseAuth.instance.currentUser!.uid;
-                           final imagePath='/$uid/profile';
-                           final imageExtension=_selectedImage!.path.split('.').last.toLowerCase();
-                            final imageBytes=await _selectedImage!.readAsBytes();
-                           await supabaseStorage.uploadBinary(imagePath, imageBytes,
-                           fileOptions: FileOptions(
-                            contentType: 'image/$imageExtension'
-                           )
-                           );
-                           final imageUrl=supabaseStorage.getPublicUrl(imagePath);
-                           // Perform the update with a where clause to match the correct profile
-   await supabase.from('profiles').insert({
-                          'username':_username,
-                          'id':uid,
-                          'avatar_url':imageUrl
-                         })
-      .eq('id', uid);  // Add condition to update where id matches the Firebase UID
+                           await createChatUserProfile(userIdentifier: uid,username: _username!,selectedImage: _selectedImage!);  // Add condition to update where id matches the Firebase UID
       
 setState(() {
                   _isLoading=false;
@@ -149,5 +133,5 @@ setState(() {
       ),
     );
   }
-}
 
+}

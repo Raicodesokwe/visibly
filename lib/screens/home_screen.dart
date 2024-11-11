@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:visibly/screens/accreditations_screen.dart';
-import 'package:visibly/screens/chat_screen.dart';
+import 'package:chat_supabase/chat_supabase.dart';
 import 'package:visibly/services/auth_service.dart';
 import 'package:visibly/utils/common_functions.dart';
 import 'package:visibly/utils/constants.dart';
@@ -56,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.appDark,
           onPressed: (){
-            openScreen(context,const ChatScreen());
+            openScreen(context, ChatScreen(channelName: 'mojito',userIdentifier: FirebaseAuth.instance.currentUser!.uid,));
           },
         child:const Icon(Icons.chat_rounded,color: AppColors.appGreen,),
         ),

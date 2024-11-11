@@ -1,6 +1,5 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 //Colors
 class AppColors {
   static const appDark = Color(0xff292D32);
@@ -15,10 +14,7 @@ const String certificateIcon='assets/images/certificate-icon.svg';
 const String approvedIcon='assets/images/approved-icon.svg';
 //fonts
 const String clashDisplay='ClashDisplay';
-//supabase
-// It's handy to then extract the Supabase client in a variable for later uses
-final supabase = Supabase.instance.client;
-final supabaseStorage= supabase.storage.from('profiles');
+
 //firebase auth error messages
 const String weakPassword='weak-password';
 const String emailAlreadyInUse='email-already-in-use';
@@ -26,8 +22,6 @@ const String userNotFound='user-not-found';
 const String wrongPassword='wrong-password';
 //general error message
 const String somethingWentWrong='Something went wrong';
-//initialize supabase
-String initializeSupabaseUrl=dotenv.env['INITIALIZE_SUPABASE']!;
 //Request headers
 Map<String, String> get headers {
 
@@ -48,3 +42,13 @@ const successCode = 200;
 const successCreated = 201;
 const successCodes = [200, 201, 202, 204];
 const failureCodes = [400, 401, 402, 404, 500, 503];
+//supabase chat table fields
+const String avatarUrl='avatar_url';
+const String username='username';
+const String unknown='Unknown';
+const String message='message';
+const String createdAt='created_at';
+const String chat='chat';
+const String id='id';
+const String userId='user_id';
+const String channel='channel';
