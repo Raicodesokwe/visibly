@@ -76,10 +76,11 @@ packages:
   chat_supabase:
     dependency: "direct main"
     description:
-      path: "../chat_supabase"
-      relative: true
-    source: path
-    version: "0.0.1"
+      name: chat_supabase
+      sha256: "326bea33f5795fa0ea111beaa8e34440851031cfe60d5a94b36a5f0048758446"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   clock:
     dependency: transitive
     description:

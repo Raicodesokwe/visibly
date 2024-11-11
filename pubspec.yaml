@@ -48,7 +48,6 @@ dependencies:
   http:
   intl:
   chat_supabase:
-    path: ../chat_supabase
 
 dev_dependencies:
   flutter_test:
